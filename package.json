@@ -1,0 +1,15 @@
+{
+  "name": "kin-fetch",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "repository": "git@github.com:cuikangjie/node-fetch.git",
+  "author": "kin <cuikangjie_90h@126.com>",
+  "license": "MIT",
+  "scripts":{
+    "test": "node ./src/test.js"
+  },
+  "dependencies": {
+    "node-fetch": "^1.7.3",
+    "querystringify": "^1.0.0"
+  }
+}
