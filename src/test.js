@@ -1,12 +1,18 @@
-const fetch = require('./index')
+const fetch = require("./next");
 
-console.log(fetch);
-fetch({
-  logger: (err, url, method, code, time) => {
-    !err && console.log(url, method, code, time);
-  }
-})({url: ''}).then((data) => {
-  console.log(data);
-}).catch((err) => {
-  console.log('1', err);
+const Request = new fetch({
+  prefix: "https://api.zhuishushenqi.com",
+  logger: true
+});
+
+Request.start({
+  method: "GET",
+  url: "/book/fuzzy-search",
+  data: { query: "儒道", start: 0, limit: 100 }
 })
+  .then(res => {
+    // console.log("res---------->", res);
+  })
+  .catch(err => {
+    console.log(err);
+  });
