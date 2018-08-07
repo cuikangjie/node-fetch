@@ -68,7 +68,12 @@ class fetch {
           Date.now() - start
         );
         if (response.status >= 200 && response.status < 300) {
-          return response.json();
+          try {
+            return response.json();
+          } catch (e) {
+            console.log("-", e);
+            return response.text();
+          }
         } else {
           return Promise.reject({
             message: response.statusText,
