@@ -1,4 +1,7 @@
-const nodeFetch = require("node-fetch");
+/**
+ * 客户端 请求封装
+ * @type {[type]}
+ */
 const qs = require("querystringify");
 const defaults = {
   mode: "cors",
@@ -9,12 +12,13 @@ const defaults = {
   }
 };
 
-class fetch {
+class Request {
   constructor(options = {}) {
     this.prefix = options.prefix || "";
     this.printlog = options.logger || false;
 
     let flag = /(http|https):\/\//.test(this.prefix);
+
     if (this.prefix && !flag) {
       throw new Error(`prefix must begin with http://* or https://* `);
     }
@@ -59,7 +63,7 @@ class fetch {
 
   request() {
     let start = new Date().getTime();
-    return nodeFetch(this.url, this.option)
+    return fetch(this.url, this.option)
       .then(response => {
         this.logger(
           this.url,
@@ -103,4 +107,4 @@ class fetch {
   }
 }
 
-module.exports = fetch;
+module.exports = Request;
