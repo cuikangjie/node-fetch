@@ -8,7 +8,8 @@ const defaults = {
   credentials: "include",
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Credentials": "*"
   }
 };
 
@@ -50,7 +51,12 @@ class Request {
   }
 
   generateOption() {
-    this.option = { ...defaults, ...this.param.options, ...this.option };
+    this.option = {
+      ...defaults,
+      ...this.param,
+      ...this.param.options,
+      ...this.option
+    };
   }
 
   logger(url, method, status, time) {
